@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Dashboard/Sidebar";
-import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
-  const navigate = useNavigate();
-
   useEffect(() => {
-    navigate("/admin/dashboard/users");
-  }, [navigate]);
+    redirect("/admin/dashboard/users");
+  }, []);
 
   return (
     <div>
