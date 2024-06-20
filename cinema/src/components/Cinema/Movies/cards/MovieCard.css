@@ -1,0 +1,83 @@
+.movie-card {
+    width: 280px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px 15px 0px 0px;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-clip: border-box;
+}
+
+.movie-card__title {
+    font-size: 22px;
+}
+
+.movie-card__img {
+    width: 100%;
+    max-height: 250px;
+}
+
+.movie-card__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.movie-card__info__year {
+    font-size: 16px;
+}
+
+.movie-card__info__tags {
+    max-width: 150px;
+    max-height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.movie-card__description {
+    max-height: 100px;
+    overflow: hidden;
+
+}
+
+.movie__card__description__btn {
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.movie__card__description__btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.movie-card__description__popup {
+    width: 100%;
+    height: 100%;
+    color: black;
+}
+
+.movie-card__link {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 0px 0px 10px white;
+    padding: 5px 20px;
+    font-size: 24px;
+    color: blue;
+    text-decoration: none;
+    border-radius: 0px 0px 15px 15px;
+}
+
+.movie-card__link:hover {
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.9);
+}
