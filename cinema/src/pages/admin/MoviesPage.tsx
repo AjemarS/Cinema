@@ -1,32 +1,34 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
-import UserCard from "../../components/Dashboard/UserCard";
-import { useUsers } from "../../hooks/useUsers";
 import Sidebar from "../../components/Dashboard/Sidebar";
 import Loading from "../../components/Loading";
+import MovieCard from "../../components/Dashboard/cards/MovieCard";
+import { useMovies } from "../../hooks/useMovies";
 
-const UsersPage: React.FC = () => {
-  const { users, loadingUsers, errorUsers } = useUsers();
+const MoviesPage: React.FC = () => {
+  const { movies, loadingMovies, errorMovies } = useMovies();
 
-  if (loadingUsers) {
+  if (loadingMovies) {
     return <Loading />;
   }
 
-  if (errorUsers) {
-    return <div>{errorUsers}</div>;
+  if (errorMovies) {
+    return <div>{errorMovies}</div>;
   }
 
   return (
-    <div>
+    <div className="admin-page">
       <Navbar />
-      <Sidebar />
-      <div className="page">
-        {users.map((user) => (
-          <UserCard key={user._id} email={user.email} role={user.role} />
-        ))}
+      <div className="content">
+        <Sidebar />
+        <div className="admin-cards">
+          {movies.map((movie) => (
+            <MovieCard key={movie._id} movie={movie} />
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default UsersPage;
+export default MoviesPage;

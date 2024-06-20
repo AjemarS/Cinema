@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useMovieList } from "../../hooks/useMovieList";
+import { useMovies } from "../../hooks/useMovies";
 import Select from "../Cinema/Movies/Select";
 import { faCheck, faCopy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -41,7 +41,7 @@ const CreateRoomForm: React.FC<CreateRoomFormProps> = ({ isPopup }) => {
     setTimeout(() => setIsCopied(false), 5000);
   };
 
-  const { movies, loadingMovies, errorMovies } = useMovieList();
+  const { movies, loadingMovies, errorMovies } = useMovies();
 
   const navigate = useNavigate();
 

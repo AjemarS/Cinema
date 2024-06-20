@@ -1,15 +1,25 @@
+import { IMovie } from "../../../types";
 import "./index.css";
 
 interface MovieCard {
-  email: string;
-  role: string;
+  movie: IMovie;
 }
 
-const MovieCard = ({ email, role }: MovieCard) => {
+const MovieCard = ({ movie }: MovieCard) => {
   return (
     <div className="admin-card">
-      <div>Email: {email}</div>
-      <div>Role: {role}</div>
+      <div>Movie: {movie._id}</div>
+      <div>Title: {movie.title}</div>
+      <div>Url: {movie.url}</div>
+      <div>Image: {movie.image}</div>
+      <div>Year: {movie.year}</div>
+      <div>
+        Tags:{" "}
+        {movie.tags.map((tag) => (
+          <div>{tag}</div>
+        ))}
+      </div>
+      <div>Description: {movie.description}</div>
     </div>
   );
 };

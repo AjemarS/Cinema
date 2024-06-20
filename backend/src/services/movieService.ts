@@ -26,7 +26,7 @@ const getRooms = async (): Promise<{ rooms: IRoom[] }> => {
 };
 
 const getMovies = async (): Promise<{ movies: IMovie[] }> => {
-  const movies = await Movie.find().select("title image year");
+  const movies = await Movie.find();
 
   if (!movies) {
     throw new Error("Failed to get movies");

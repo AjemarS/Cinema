@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import movieService from "../services/movieService";
 import { IMovie } from "../types";
 
-export const useMovieList = () => {
+export const useMovies = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [loadingMovies, setLoadingMovies] = useState<boolean>(true);
   const [errorMovies, setErrorMovies] = useState<string | null>(null);
