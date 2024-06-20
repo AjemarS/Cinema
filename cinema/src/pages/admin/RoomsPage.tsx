@@ -1,29 +1,31 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
-import UserCard from "../../components/Dashboard/UserCard";
-import { useUsers } from "../../hooks/useUsers";
 import Sidebar from "../../components/Dashboard/Sidebar";
 import Loading from "../../components/Loading";
+import { useRooms } from "../../hooks/useRooms";
+import RoomCard from "../../components/Dashboard/cards/RoomCard";
 
 const UsersPage: React.FC = () => {
-  const { users, loadingUsers, errorUsers } = useUsers();
+  const { rooms, loadingRooms, errorRooms } = useRooms();
 
-  if (loadingUsers) {
+  if (loadingRooms) {
     return <Loading />;
   }
 
-  if (errorUsers) {
-    return <div>{errorUsers}</div>;
+  if (errorRooms) {
+    return <div>{errorRooms}</div>;
   }
 
   return (
-    <div>
+    <div className="admin-page">
       <Navbar />
-      <Sidebar />
-      <div className="page">
-        {users.map((user) => (
-          <UserCard key={user._id} email={user.email} role={user.role} />
-        ))}
+      <div className="content">
+        <Sidebar />
+        <div className="admin-cards">
+          {rooms.map((room) => (
+            <RoomCard key={room._id} room={room} />
+          ))}
+        </div>
       </div>
     </div>
   );
