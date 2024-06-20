@@ -14,7 +14,7 @@ const RoomCard = ({ room }: RoomCard) => {
       <div>
         Users - {room.users.length}:{" "}
         {room.users.map((user) => (
-          <div key={user}>{user}</div>
+          <li key={user}>{user}</li>
         ))}
       </div>
     </div>

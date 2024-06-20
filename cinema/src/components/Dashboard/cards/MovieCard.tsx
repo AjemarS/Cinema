@@ -16,7 +16,7 @@ const MovieCard = ({ movie }: MovieCard) => {
       <div>
         Tags:{" "}
         {movie.tags.map((tag) => (
-          <div>{tag}</div>
+          <li key={tag}>{tag}</li>
         ))}
       </div>
       <div>Description: {movie.description}</div>
