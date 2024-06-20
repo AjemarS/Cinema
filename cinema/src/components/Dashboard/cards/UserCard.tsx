@@ -1,4 +1,4 @@
-import "./UserCard.css";
+import "./index.css";
 
 interface UserCard {
   email: string;
@@ -7,7 +7,7 @@ interface UserCard {
 
 const UserCard = ({ email, role }: UserCard) => {
   return (
-    <div className="user-card">
+    <div className="admin-card">
       <div>Email: {email}</div>
       <div>Role: {role}</div>
     </div>

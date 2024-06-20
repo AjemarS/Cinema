@@ -41,3 +41,14 @@
     display: flex;
     align-items: center;
 }
+
+.admin-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-page .content{
+    display: flex;
+    flex-direction: row;
+    
+}
