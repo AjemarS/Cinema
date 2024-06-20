@@ -39,7 +39,7 @@ const LoginForm: React.FC = () => {
         if (response.role === "admin") {
           navigate("/admin/dashboard");
         } else if (response.role === "user") {
-          navigate("/movies");
+          navigate("/rooms");
         } else {
           throw new Error("Bad response role received");
         }
