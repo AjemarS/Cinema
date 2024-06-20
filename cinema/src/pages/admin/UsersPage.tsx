@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
-import UserCard from "../../components/Dashboard/UserCard";
+import UserCard from "../../components/Dashboard/cards/UserCard";
 import { useUsers } from "../../hooks/useUsers";
 import Sidebar from "../../components/Dashboard/Sidebar";
 import Loading from "../../components/Loading";
@@ -17,13 +17,15 @@ const UsersPage: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="admin-page">
       <Navbar />
-      <Sidebar />
-      <div className="page">
-        {users.map((user) => (
-          <UserCard key={user._id} email={user.email} role={user.role} />
-        ))}
+      <div className="content">
+        <Sidebar />
+        <div className="admin-cards">
+          {users.map((user) => (
+            <UserCard key={user._id} user={user} />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,15 +1,16 @@
+import { IUser } from "../../../types";
 import "./index.css";
 
 interface UserCard {
-  email: string;
-  role: string;
+  user: IUser;
 }
 
-const UserCard = ({ email, role }: UserCard) => {
+const UserCard = ({ user }: UserCard) => {
   return (
     <div className="admin-card">
-      <div>Email: {email}</div>
-      <div>Role: {role}</div>
+      <div>User: {user._id}</div>
+      <div>Email: {user.email}</div>
+      <div>Username: {user.username}</div>
     </div>
   );
 };
