@@ -25,7 +25,7 @@ const getProfile = async () => {
   return response.data;
 };
 
-const getAllUsers = async () => {
+const getUsers = async () => {
   const token = localStorage.getItem("token");
 
   const response = await axios.get(`${API_URL}/users`, {
@@ -37,7 +37,19 @@ const getAllUsers = async () => {
   return response.data;
 };
 
-const getUser = async () => {
+const getUser = async (userId: string) => {
+  const token = localStorage.getItem("token");
+
+  const response = await axios.get(`${API_URL}/users/${userId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+
+const getMe = async () => {
   const token = localStorage.getItem("token");
 
   const response = await axios.get(`${API_URL}/me`, {
@@ -46,13 +58,14 @@ const getUser = async () => {
     },
   });
 
-  return response.data.user;
+  return response.data;
 };
 
 export default {
   register,
   login,
   getProfile,
-  getAllUsers,
+  getUsers,
   getUser,
+  getMe,
 };

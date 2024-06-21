@@ -10,7 +10,7 @@ export const useUsers = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const data = await authService.getAllUsers();
+        const data = await authService.getUsers();
         setUsers(data.users);
       } catch (error) {
         setErrorUsers("Failed to fetch users");

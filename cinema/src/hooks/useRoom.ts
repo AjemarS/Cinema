@@ -10,7 +10,7 @@ export const useRoom = (roomId: string) => {
   useEffect(() => {
     const fetchRoom = async () => {
       try {
-        const data = await movieService.getRoom(roomId!);
+        const data = await movieService.getRoom(roomId);
 
         setRoom(data.room);
       } catch (error) {

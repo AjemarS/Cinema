@@ -30,7 +30,7 @@ const getMovieList = async () => {
 const getRoom = async (roomId: string) => {
   const token = localStorage.getItem("token");
 
-  const response = await axios.get(`${API_URL}/room/${roomId}`, {
+  const response = await axios.get(`${API_URL}/rooms/${roomId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

@@ -2,7 +2,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User, { IUser } from "../models/UserModel";
 
-
 const registerUser = async (
   username: string,
   email: string,
@@ -42,7 +41,7 @@ const loginUser = async (
   return { user, token };
 };
 
-const getAllUsers = async (): Promise<{ users: IUser[] }> => {
+const getUsers = async (): Promise<{ users: IUser[] }> => {
   const users = await User.find().select("-password");
 
   if (!users) {
@@ -52,8 +51,8 @@ const getAllUsers = async (): Promise<{ users: IUser[] }> => {
   return { users };
 };
 
-const getUser = async (email: string): Promise<{ user: IUser }> => {
-  const user = await User.findOne({ email }).select("-password");
+const getUser = async (_id: string): Promise<{ user: IUser }> => {
+  const user = await User.findById({ _id }).select("-password");
 
   if (!user) {
     throw new Error("Failed to get user");
@@ -71,7 +70,7 @@ const generateToken = (id: string, role: string): string => {
 export default {
   registerUser,
   loginUser,
-  getAllUsers,
+  getUsers,
   getUser,
   generateToken,
 };

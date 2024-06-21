@@ -4,16 +4,25 @@ import UserCard from "../../components/Dashboard/cards/UserCard";
 import { useUsers } from "../../hooks/useUsers";
 import Sidebar from "../../components/Dashboard/Sidebar";
 import Loading from "../../components/Loading";
+import { useLocation } from "react-router-dom";
+import { useUser } from "../../hooks/useUser";
+
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
 
 const UsersPage: React.FC = () => {
-  const { users, loadingUsers, errorUsers } = useUsers();
+  const query = useQuery().get("user");
 
-  if (loadingUsers) {
+  const { users, loadingUsers, errorUsers } = useUsers();
+  const { user, loadingUser, errorUser } = useUser(query || "");
+
+  if (loadingUsers || loadingUser) {
     return <Loading />;
   }
 
-  if (errorUsers) {
-    return <div>{errorUsers}</div>;
+  if (errorUsers || errorUser) {
+    console.log(errorUsers || errorUser);
   }
 
   return (
@@ -21,11 +30,17 @@ const UsersPage: React.FC = () => {
       <Navbar />
       <div className="content">
         <Sidebar />
-        <div className="admin-cards">
-          {users.map((user) => (
-            <UserCard key={user._id} user={user} />
-          ))}
-        </div>
+        {query ? (
+          user && (
+            <div className="admin-cards">
+              <UserCard user={user} />
+            </div>
+          )
+        ) : (
+          <div className="admin-cards">
+            {users && users.map((user) => <UserCard key={user._id} user={user} />)}
+          </div>
+        )}
       </div>
     </div>
   );

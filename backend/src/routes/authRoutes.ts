@@ -7,11 +7,10 @@ const router = express.Router();
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 
-router.get("/profile", protect, admin, (req, res) => {
-  res.json(req.body);
-});
+router.get("/profile", protect, admin, (req, res) => res.json(req.body));
 
 router.get("/users", protect, admin, getAllUsers);
-router.get("/me", protect, getUser);
+router.get("/users/:userId", protect, getUser);
+router.get("/me", protect, (req, res) => res.json(req.body));
 
 export default router;

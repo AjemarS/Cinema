@@ -64,7 +64,7 @@ export const loginUser = async (req: LoginUserRequest, res: Response) => {
 
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
-    const users = await authService.getAllUsers();
+    const users = await authService.getUsers();
     res.json(users);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
@@ -72,8 +72,10 @@ export const getAllUsers = async (req: Request, res: Response) => {
 };
 
 export const getUser = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+
   try {
-    const user = await authService.getUser(req.body.user.email);
+    const user = await authService.getUser(userId);
 
     res.json(user);
   } catch (error: any) {

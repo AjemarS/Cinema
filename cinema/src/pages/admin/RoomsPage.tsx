@@ -5,7 +5,7 @@ import Loading from "../../components/Loading";
 import { useRooms } from "../../hooks/useRooms";
 import RoomCard from "../../components/Dashboard/cards/RoomCard";
 
-const UsersPage: React.FC = () => {
+const RoomsPage: React.FC = () => {
   const { rooms, loadingRooms, errorRooms } = useRooms();
 
   if (loadingRooms) {
@@ -31,4 +31,4 @@ const UsersPage: React.FC = () => {
   );
 };
 
-export default UsersPage;
+export default RoomsPage;
