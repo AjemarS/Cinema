@@ -16,3 +16,7 @@
 .admin-card a:hover {
     text-decoration: none;
 }
+
+.admin-card a:visited {
+    color: black;
+}
