@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotate } from "@fortawesome/free-solid-svg-icons";
+import LogoutBtn from "./LogoutBtn";
 
 const Navbar: React.FC = () => {
   const [isUpdateMode, setIsUpdateMode] = useState(false);
@@ -21,11 +22,6 @@ const Navbar: React.FC = () => {
     return () => clearInterval(interval);
   }, [isUpdateMode, navigate]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
-
   return (
     <div className="navbar">
       <div className="navbar__logo">Dashboard</div>
@@ -39,13 +35,7 @@ const Navbar: React.FC = () => {
             <FontAwesomeIcon icon={faRotate} size="lg" style={{ color: "#ff0000" }} />
           </button>
         )}
-        {localStorage.getItem("token") ? (
-          <button onClick={handleLogout} className="navbar__btn">
-            Logout
-          </button>
-        ) : (
-          <Link to={"/login"}>Login</Link>
-        )}
+        {localStorage.getItem("token") ? <LogoutBtn /> : <Link to={"/login"}>Login</Link>}
       </div>
     </div>
   );

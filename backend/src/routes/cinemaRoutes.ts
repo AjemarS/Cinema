@@ -9,7 +9,7 @@ import {
   createRoom,
   getMovie,
   getMessages,
-  sendMessage
+  sendMessage,
 } from "../controllers/movieController";
 
 const router = express.Router();
@@ -30,13 +30,13 @@ router.get("/movie/:movieId", protect, getMovie);
 router.get("/movies/:filename", protect, streamMovie);
 
 // Get room by id
-router.get("/room/:roomId", protect, getRoom);
+router.get("/rooms/:roomId", protect, getRoom);
 
 // Create new room
 router.post("/room/:roomId", protect, createRoom);
 
-router.get('/messages/:roomId', protect, getMessages)
+router.get("/messages/:roomId", protect, getMessages);
 
-router.post('/message/:roomId', protect, sendMessage)
+router.post("/message/:roomId", protect, sendMessage);
 
 export default router;

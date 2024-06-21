@@ -1,0 +1,24 @@
+.logout__btn {
+    padding: 5px 10px;
+    background-color: blue;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    box-shadow: 0px 0px 5px blue;
+}
+
+.logout__btn:hover {
+    border: 2px solid blue;
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 5px blue;
+    transition: all .3s;
+}
+
+.logout__btn:active {
+    box-shadow: 0px 0px 10px blue;
+    border: 2px solid transparent;
+    transition: all .3s;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import MovieCard from "../components/Cinema/Movies/cards/MovieCard";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useRooms } from "../hooks/useRooms";
 import RoomCard from "../components/Cinema/Movies/cards/RoomCard";
 import CreateRoomCard from "../components/Cinema/Movies/cards/CreateRoomCard";
@@ -9,10 +9,9 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import SearchInput from "../components/Cinema/Movies/SearchInput";
 import Loading from "../components/Loading";
 import "./Pages.css";
+import LogoutBtn from "../components/LogoutBtn";
 
 const RoomsPage: React.FC = () => {
-  const navigate = useNavigate();
-
   const { rooms, loadingRooms, errorRooms } = useRooms();
 
   if (loadingRooms) {
@@ -23,19 +22,12 @@ const RoomsPage: React.FC = () => {
     return <div>{errorRooms}</div>;
   }
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
-
   return (
     <div className="rooms-page">
       <div className="rooms-page__title">
         <h2>Choose a room</h2>
         <SearchInput data={rooms} />
-        <button onClick={handleLogout} className="navbar__btn">
-          Logout
-        </button>
+        <LogoutBtn />
       </div>
       <div className="rooms">
         {rooms.map((room) => (
