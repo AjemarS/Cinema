@@ -8,3 +8,11 @@
 .admin-cards {
     display: flex;
 }
+
+.admin-card a {
+    color: black;
+}
+
+.admin-card a:hover {
+    text-decoration: none;
+}
