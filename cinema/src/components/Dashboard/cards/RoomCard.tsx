@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { IRoom } from "../../../types";
 import "./index.css";
 
@@ -10,7 +11,9 @@ const RoomCard = ({ room }: RoomCard) => {
   return (
     <div className="admin-card">
       <div>RoomId: {room.roomId}</div>
-      <div>MovieId: {room.movie}</div>
+      <div>
+        MovieId: <Link to={`/admin/dashboard/movies?movie=${room.movie}`}>{room.movie}</Link>
+      </div>
       <div>
         Users - {room.users.length}:{" "}
         {room.users.map((user) => (

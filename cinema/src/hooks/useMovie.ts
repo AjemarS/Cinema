@@ -8,6 +8,12 @@ export const useMovie = (movieId: string | undefined) => {
   const [errorMovie, setErrorMovie] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!movieId) {
+      setLoadingMovie(false);
+      setErrorMovie("Movie ID is not provided");
+      return;
+    }
+
     const fetchMovie = async () => {
       try {
         const data = await movieService.getMovie(movieId!);
