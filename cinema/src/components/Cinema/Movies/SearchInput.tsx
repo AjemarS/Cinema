@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import "./SearchInput.css";
 import { IRoom } from "../../../types";
+import { useLocation, useNavigate } from "react-router-dom";
 
-interface SearchRoomInputProps {
+interface SearchInputProps {
   data: IRoom[];
 }
 
-const SearchRoomInput: React.FC<SearchRoomInputProps> = ({ data }) => {
+const SearchInput: React.FC<SearchInputProps> = ({ data }) => {
   const [query, setQuery] = useState<string>("");
   const [filteredData, setFilteredData] = useState<IRoom[]>(data);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -23,7 +27,7 @@ const SearchRoomInput: React.FC<SearchRoomInputProps> = ({ data }) => {
   return (
     <div className="search">
       <input
-        className="search__input"
+        className={query ? "search__input open" : "search__input"}
         type="text"
         placeholder="Search it"
         value={query}
@@ -32,7 +36,11 @@ const SearchRoomInput: React.FC<SearchRoomInputProps> = ({ data }) => {
       {query && (
         <ul className="search__list">
           {filteredData.map((item, index) => (
-            <li key={index} className="search__item">
+            <li
+              key={index}
+              className="search__item"
+              onClick={() => navigate(location.pathname + `?room=${item.roomId}`)}
+            >
               {item.roomId}
             </li>
           ))}
@@ -41,4 +49,4 @@ const SearchRoomInput: React.FC<SearchRoomInputProps> = ({ data }) => {
     </div>
   );
 };
-export default SearchRoomInput;
+export default SearchInput;

@@ -23,12 +23,12 @@
 }
 
 .rooms-page__title {
+    height: 80px;
     color: white;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    padding: 10px;
 }
 
 .rooms-page__title h2 {
@@ -47,8 +47,8 @@
     flex-direction: column;
 }
 
-.admin-page .content{
+.admin-page .content {
     display: flex;
     flex-direction: row;
-    
+
 }

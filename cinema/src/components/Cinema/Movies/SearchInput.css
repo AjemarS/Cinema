@@ -5,40 +5,47 @@
     border: 2px white solid;
     border-radius: 25px;
     color: white;
-    z-index: 1;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.search__input.open {
+    height: 33px;
+    padding: 8px 16px 0;
+    border-radius: 22px 22px 0 0;
+    border-bottom: none;
 }
 
 .search__input::placeholder {
-    margin-left: 5px;
+    margin-left: 8px;
     color: white;
-    font-size: 18px;
-    vertical-align: middle;
+    font-size: 16px;
 }
 
 .search__list {
     position: absolute;
-    top: 70px;
     left: 50%;
-    transform: translate(-20%, 0);
-    width: 150px;
-    padding: 0;
+    transform: translate(-27.8%, 0);
+    width: 195.9px;
+    padding: 0px 0px 20px;
     margin: 0;
-    border-radius: 5px;
+    border: 2px white solid;
+    border-radius: 0 0 25px 25px;
+    border-top: none;
     font-size: 14px;
     list-style: none;
-    z-index: 0;
+    background: black;
 }
 
 .search__item {
     list-style-type: none;
-    padding: 8px;
-    background: white;
+    padding: 8px 8px 8px 16px;
     margin: 0;
-    border-radius: 5px;
-    color: black;
+    border-radius: 1px;
+    color: white;
     cursor: pointer;
 }
 
 .search__item:hover {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgb(10, 10, 10);
 }

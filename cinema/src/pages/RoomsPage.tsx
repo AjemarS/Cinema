@@ -1,6 +1,6 @@
 import React from "react";
 import MovieCard from "../components/Cinema/Movies/cards/MovieCard";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useRooms } from "../hooks/useRooms";
 import RoomCard from "../components/Cinema/Movies/cards/RoomCard";
 import CreateRoomCard from "../components/Cinema/Movies/cards/CreateRoomCard";
@@ -10,16 +10,24 @@ import SearchInput from "../components/Cinema/Movies/SearchInput";
 import Loading from "../components/Loading";
 import "./Pages.css";
 import LogoutBtn from "../components/LogoutBtn";
+import { useRoom } from "../hooks/useRoom";
+
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
 
 const RoomsPage: React.FC = () => {
-  const { rooms, loadingRooms, errorRooms } = useRooms();
+  const query = useQuery().get("room");
 
-  if (loadingRooms) {
+  const { rooms, loadingRooms, errorRooms } = useRooms();
+  const { room, loadingRoom, errorRoom } = useRoom(query!);
+
+  if (loadingRooms || loadingRoom) {
     return <Loading />;
   }
 
-  if (errorRooms) {
-    return <div>{errorRooms}</div>;
+  if (errorRooms || errorRoom) {
+    console.log(errorRooms || errorRoom);
   }
 
   return (
@@ -29,20 +37,30 @@ const RoomsPage: React.FC = () => {
         <SearchInput data={rooms} />
         <LogoutBtn />
       </div>
-      <div className="rooms">
-        {rooms.map((room) => (
-          <div key={room._id}>
-            <RoomCard key={room._id} roomId={room.roomId}>
-              <MovieCard key={room._id} movieId={room.movie} />
+      {query ? (
+        room && (
+          <div className="rooms">
+            <RoomCard roomId={room.roomId}>
+              <MovieCard movieId={room.movie} />
             </RoomCard>
-            <Link to={`/rooms/${room.roomId}`} key={room.roomId} className="movie-card__link">
-              Choose
-              <FontAwesomeIcon icon={faArrowRight} />
-            </Link>
           </div>
-        ))}
-        <CreateRoomCard />
-      </div>
+        )
+      ) : (
+        <div className="rooms">
+          {rooms.map((room) => (
+            <div key={room._id}>
+              <RoomCard key={room._id} roomId={room.roomId}>
+                <MovieCard key={room._id} movieId={room.movie} />
+              </RoomCard>
+              <Link to={`/rooms/${room.roomId}`} key={room.roomId} className="movie-card__link">
+                Choose
+                <FontAwesomeIcon icon={faArrowRight} />
+              </Link>
+            </div>
+          ))}
+          <CreateRoomCard />
+        </div>
+      )}
     </div>
   );
 };
