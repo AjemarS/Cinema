@@ -6,9 +6,14 @@ import CreateRoomForm from "../../../forms/CreateRoomForm";
 const CreateRoomCard = () => {
   const [isPopup, setIsPopup] = useState(false);
 
+  const handleClick = () => {
+    setIsPopup(!isPopup);
+    window.scrollTo(0, screenTop);
+  };
+
   return (
     <div>
-      <div className="create-room-card" onClick={() => setIsPopup(!isPopup)}>
+      <div className="create-room-card" onClick={handleClick}>
         <div className="create-room-card__content">
           <span className="create-room-card__content--title">Create a room</span>
           <button className="create-room-card__content--btn">+</button>
