@@ -1,19 +1,20 @@
 import React, { useRef, useEffect } from "react";
-import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from "video.js";
+import videojs from "video.js";
 import "video.js/dist/video-js.css";
-
 import { Socket, io } from "socket.io-client";
+import Player from "video.js/dist/types/player";
+import { getFullUrl } from "../../utils/getFullUrl";
 
 interface MoviePlayerProps {
   roomId: string;
-  videoJsOptions: VideoJsPlayerOptions;
+  movie: string;
 }
 
 const videoSocket: Socket = io("http://localhost:3000/video");
 
-const MoviePlayer: React.FC<MoviePlayerProps> = ({ roomId, videoJsOptions }) => {
+const MoviePlayer: React.FC<MoviePlayerProps> = ({ roomId, movie }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const playerRef = useRef<VideoJsPlayer>();
+  const playerRef = useRef<Player>();
 
   useEffect(() => {
     videoSocket.emit("joinRoom", roomId);
@@ -47,6 +48,18 @@ const MoviePlayer: React.FC<MoviePlayerProps> = ({ roomId, videoJsOptions }) => 
   }, [roomId]);
 
   useEffect(() => {
+    const videoJsOptions = {
+      controls: true,
+      responsive: true,
+      fluid: true,
+      sources: [
+        {
+          src: getFullUrl(movie),
+          type: "video/mp4",
+        },
+      ],
+    };
+
     if (videoRef.current && !playerRef.current) {
       playerRef.current = videojs(videoRef.current, videoJsOptions);
     }
@@ -56,7 +69,7 @@ const MoviePlayer: React.FC<MoviePlayerProps> = ({ roomId, videoJsOptions }) => 
         playerRef.current.dispose();
       }
     };
-  }, [videoJsOptions]);
+  }, [movie]);
 
   const handleTimeUpdate = (e: React.ChangeEvent<HTMLVideoElement>) => {
     const timeout = setTimeout(() => {

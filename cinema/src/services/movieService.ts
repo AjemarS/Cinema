@@ -1,5 +1,4 @@
 import axios from "axios";
-import { IMessage } from "../types";
 
 const API_URL = "http://localhost:5000/api/cinema";
 
